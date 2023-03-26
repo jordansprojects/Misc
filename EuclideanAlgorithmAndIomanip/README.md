@@ -1,4 +1,4 @@
-#Euclidean Algorithm
+# Euclidean Algorithm
 
 A simple program that uses the Euclidean Algorithm to find the Greatest Common Divisor. 
 
