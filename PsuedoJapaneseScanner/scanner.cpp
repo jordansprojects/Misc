@@ -44,7 +44,7 @@ bool is_dwzyj(char ch){
 // --------- Two DFAs ---------------------------------
 
 // WORD DFA 
-// Done by: Jordan Aquino
+// Done by: Jordan 
 // RE:   **
 bool word (string s)
 {
