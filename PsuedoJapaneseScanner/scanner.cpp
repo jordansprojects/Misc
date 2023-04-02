@@ -187,6 +187,7 @@ string tokenName[30] = {"ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", 
 // ** a.out should work without any additional files.
 
 map<string, tokentype> resWords;
+map<string, tokentype> :: iterator it;
 
 void createMap(){
 	resWords["masu"] = VERB;
@@ -245,6 +246,27 @@ int scanner(tokentype& tt, string& w)
   4. Return the token type & string  (pass by reference)
   */
 
+ if(word(w)){
+	it = resWords.find(w); //find w in the map
+
+	if(it != resWords.end()){
+		tt = it->second; //it->second is the value from the key
+	}else if(w[w.length() - 1] == 'I' || w[w.length() - 1 == 'E']){
+		tt = WORD2;
+	}else{
+		tt = WORD1;
+	}
+
+ }else if(period(w)){
+	tt = PERIOD;
+
+ }else{
+	tt = ERROR;
+	cout << "Lexical error: " << w << " is not valid token." << endl;
+
+ }
+ return 0;
+
 }//the end of scanner
 
 
@@ -284,8 +306,8 @@ void jordans_DFA_tester(){
 int main()
 {
 	// beyond adding this function call here, I leave krells tester untouched
-	jordans_DFA_tester();
-/*
+	//jordans_DFA_tester();
+	createMap();
   tokentype thetype;
   string theword;
   string filename;
@@ -308,6 +330,6 @@ int main()
 
    cout << "End of file is encountered." << endl;
    fin.close();
-*/
+
 }// end
 
