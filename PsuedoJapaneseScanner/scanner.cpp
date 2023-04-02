@@ -190,6 +190,7 @@ map<string, tokentype> resWords;
 map<string, tokentype> :: iterator it;
 
 void createMap(){
+	resWords["."] = PERIOD;
 	resWords["masu"] = VERB;
 	resWords["masen"] = VERBNEG;
 	resWords["mashita"] = VERBPAST;
@@ -251,13 +252,14 @@ int scanner(tokentype& tt, string& w)
 
 	if(it != resWords.end()){
 		tt = it->second; //it->second is the value from the key
-	}else if(w[w.length() - 1] == 'I' || w[w.length() - 1 == 'E']){
+	}else if(w[w.length() - 1] == 'I' || w[w.length() - 1] == 'E'){
 		tt = WORD2;
 	}else{
 		tt = WORD1;
 	}
 
  }else if(period(w)){
+	cout << "in else if";
 	tt = PERIOD;
 
  }else{
@@ -324,8 +326,10 @@ int main()
                                    // the arguments
        if (theword == "eofm") break;  // stop now
 
-       cout << "Type is:" << tokenName[thetype] << endl;
-       cout << "Word is:" << theword << endl;
+      //  cout << "Type is:" << tokenName[thetype] << endl;
+      //  cout << "Word is:" << theword << endl;
+
+			 cout << theword << " is token type " << tokenName[thetype] << endl;
     }
 
    cout << "End of file is encountered." << endl;
