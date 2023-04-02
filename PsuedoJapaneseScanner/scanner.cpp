@@ -259,7 +259,6 @@ int scanner(tokentype& tt, string& w)
 	}
 
  }else if(period(w)){
-	cout << "in else if";
 	tt = PERIOD;
 
  }else{
