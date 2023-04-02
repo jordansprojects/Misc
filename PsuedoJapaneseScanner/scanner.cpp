@@ -221,7 +221,7 @@ ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by:
+// ** Done by: Zach Jilani
 int scanner(tokentype& tt, string& w)
 {
 
