@@ -190,7 +190,6 @@ map<string, tokentype> resWords;
 map<string, tokentype> :: iterator it;
 
 void createMap(){
-	resWords["."] = PERIOD;
 	resWords["masu"] = VERB;
 	resWords["masen"] = VERBNEG;
 	resWords["mashita"] = VERBPAST;
@@ -246,8 +245,9 @@ int scanner(tokentype& tt, string& w)
 
   4. Return the token type & string  (pass by reference)
   */
-
- if(word(w)){
+ if(period(w)){
+	tt = PERIOD;
+ }else if(word(w)){
 	it = resWords.find(w); //find w in the map
 
 	if(it != resWords.end()){
@@ -257,14 +257,9 @@ int scanner(tokentype& tt, string& w)
 	}else{
 		tt = WORD1;
 	}
-
- }else if(period(w)){
-	tt = PERIOD;
-
  }else{
 	tt = ERROR;
 	cout << "Lexical error: " << w << " is not valid token." << endl;
-
  }
  return 0;
 
@@ -328,7 +323,7 @@ int main()
       //  cout << "Type is:" << tokenName[thetype] << endl;
       //  cout << "Word is:" << theword << endl;
 
-			 cout << theword << " is token type " << tokenName[thetype] << endl;
+			 cout << theword << " is token type " << tokenName[thetype] << endl; //changed it to this for easier comparison
     }
 
    cout << "End of file is encountered." << endl;
