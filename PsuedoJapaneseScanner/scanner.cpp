@@ -1,16 +1,17 @@
 #include<iostream>
 #include<fstream>
 #include<string>
+#include<map>
 
-#include<assert.h> //  assert, for testing 
-#include <vector>  // vector, for containing test conditions 
+#include<assert.h> //  assert, for testing
+#include <vector>  // vector, for containing test conditions
 
 using namespace std;
 
 /* Look for all **'s and complete them */
 
 //=====================================================
-// File scanner.cpp written by: Group Number: ** 
+// File scanner.cpp written by: Group Number: **
 //=====================================================
 
 
@@ -19,7 +20,7 @@ bool is_vowel(char ch){
 	string vowels = "aiIueEo";
 	for (int i = 0 ; i < vowels.length(); i++){
 		if(ch == vowels[i])
-			return true; // Is a vowel, return true 
+			return true; // Is a vowel, return true
 	}
 	return false; // Not a vowel, return false
 }
@@ -28,7 +29,7 @@ bool is_bghkmpr(char ch){
 	string letters = "bghkmpr";
 	for (int i = 0 ; i < letters.length(); i++){
 		if(ch == letters[i])
-			return true; // Is one of the letters, return true 
+			return true; // Is one of the letters, return true
 	}
 	return false; // Not one of the letters, return false
 }
@@ -36,63 +37,63 @@ bool is_dwzyj(char ch){
 	string letters = "dwzyj";
 	for (int i = 0 ; i < letters.length(); i++){
 		if(ch == letters[i])
-			return true; // Is one of the letters, return true 
+			return true; // Is one of the letters, return true
 	}
 	return false; // Not one of the letters, return false
 }
 
 // --------- Two DFAs ---------------------------------
 
-// WORD DFA 
-// Done by: Jordan 
+// WORD DFA
+// Done by: Jordan Aquino
 // RE:   **
 bool word (string s)
 {
 	/********
 	 * Our graph used number and characters. Since state is an int, states with char subscripts will be set
 	 * to the ascii value of the char states, whereas numerical subscripted states remain integers.
-	 * I.e. state q0 = 0, but state qt = 't' 
+	 * I.e. state q0 = 0, but state qt = 't'
 	 * */
-	int q0q1 = 1; 	 // This is our final state 
+	int q0q1 = 1; 	 // This is our final state
 
-	// For these two state vars I chose an arbitrary, unused  ascii value so 
+	// For these two state vars I chose an arbitrary, unused  ascii value so
 	// the code can work but we stay true to the state names in the DFA diagram
-	int qsa = 'z';   
+	int qsa = 'z';
 	int q0qy = 'p';
 
 	// the rest just correspond to the state # or letter
-	//  I decided to define all of them to be consistent    
+	//  I decided to define all of them to be consistent
 	int qy = 'y';
 	int q0 = 0;
 	int qc = 'c';
 	int qt = 't';
 	int qs = 's';
 	// variables for looping through the word
-	int state = 0;		
+	int state = 0;
 	int charpos = 0;
 
 	/* replace the following todo the word dfa  **/
-	while (s[charpos] != '\0') 
+	while (s[charpos] != '\0')
 	{
-		// store character from wordstring in ch, makes the rest of the code less ugly 
+		// store character from wordstring in ch, makes the rest of the code less ugly
 		char ch = s[charpos];
-		if(state == q0q1){ 	
+		if(state == q0q1){
 			if(is_vowel(ch)){
 				state = q0q1;
 			}else if (ch == 'n'){
 				state = q0qy;
 			}else if(is_bghkmpr(ch)){
-				state = qy;			
+				state = qy;
 			}else if(is_dwzyj(ch)){
 				state = qsa;
 			}else if(ch == 's'){
-				state = qs;	
+				state = qs;
 			}else if (ch == 'c'){
 				state = qc;
 			}else if (ch == 't'){
 				state = qt;
 			}else return false;
-		}else if(state == q0){ 
+		}else if(state == q0){
 			if(is_vowel(ch)){
 				state = q0q1;
 			}else if(is_bghkmpr(ch)){
@@ -107,7 +108,7 @@ bool word (string s)
 				state = qt;
 			}
 
-		}else if (state == qy){	
+		}else if (state == qy){
 			if(is_vowel(ch)){
 				state = q0q1;
 			}else if(ch == 'y'){
@@ -119,7 +120,7 @@ bool word (string s)
 			}else if(ch == 's'){
 				state = qsa;
 			}
-		}else if (state == qs ){	
+		}else if (state == qs ){
 			if(is_vowel(ch)){
 				state = q0q1;
 			}else if( ch == 'h'){
@@ -135,7 +136,7 @@ bool word (string s)
 			}else{
 				return false;
 			}
-		}else if(state == q0qy){	
+		}else if(state == q0qy){
 			if (is_vowel(ch)){
 				state = q0q1;
 			}else if( is_bghkmpr(ch) || ch == 'n'){
@@ -150,7 +151,7 @@ bool word (string s)
 				state = qt;
 			}
 
-		} //end of states if-else branching 
+		} //end of states if-else branching
 
 		charpos++;
 
@@ -161,47 +162,77 @@ bool word (string s)
 	else return(false);
 }
 
-// PERIOD DFA 
+// PERIOD DFA
 // Done by: Jordan Aquino
 bool period (string s)
-{  
+{
 	return(s == ".");
 
 }
 
 // ------ Three  Tables -------------------------------------
 
-// TABLES Done by: **
+// TABLES Done by: Zach Jilani
 
 // ** Update the tokentype to be WORD1, WORD2, PERIOD, ERROR, EOFM, etc.
-enum tokentype {ERROR, };
+enum tokentype {ERROR, WORD1, WORD2, PERIOD, VERB, VERBNEG, VERBPAST,
+VERBPASTNEG, IS, WAS, OBJECT, SUBJECT, DESTINATION, PRONOUN, CONNECTOR, EOFM};
 
 // ** For the display names of tokens - must be in the same order as the tokentype.
-string tokenName[30] = { }; 
+string tokenName[30] = {"ERROR", "WORD1", "WORD2", "PERIOD", "VERB", "VERBNEG", "VERBPAST",
+"VERBPASTNEG", "IS", "WAS", "OBJECT", "SUBJECT", "DESTINATION", "PRONOUN", "CONNECTOR", "EOFM"};
 
-// ** Need the reservedwords table to be set up here. 
+// ** Need the reservedwords table to be set up here.
 // ** Do not require any file input for this. Hard code the table.
 // ** a.out should work without any additional files.
 
+map<string, tokentype> resWords;
 
-// ------------ Scanner and Driver ----------------------- 
+void createMap(){
+	resWords["masu"] = VERB;
+	resWords["masen"] = VERBNEG;
+	resWords["mashita"] = VERBPAST;
+	resWords["masendeshita"] = VERBPASTNEG;
+	resWords["desu"] = IS;
+	resWords["deshita"] = WAS;
+	resWords["o"] = OBJECT;
+	resWords["wa"] = SUBJECT;
+	resWords["ni"] = DESTINATION;
+	resWords["watashi"] = PRONOUN;
+	resWords["anata"] = PRONOUN;
+	resWords["kare"] = PRONOUN;
+	resWords["kanojo"] = PRONOUN;
+	resWords["sore"] = PRONOUN;
+	resWords["mata"] = CONNECTOR;
+	resWords["soshite"] = CONNECTOR;
+	resWords["shikashi"] = CONNECTOR;
+	resWords["dakara"] = CONNECTOR;
+	resWords["eofm"] = EOFM;
+}
+
+
+
+
+
+// ------------ Scanner and Driver -----------------------
 
 ifstream fin;  // global stream for reading from the input file
 
 // Scanner processes only one word each time it is called
 // Gives back the token type and the word itself
-// ** Done by: 
+// ** Done by:
 int scanner(tokentype& tt, string& w)
 {
 
   // ** Grab the next word from the file via fin
-  // 1. If it is eofm, return right now.   
-  //
- 	fin >> w;
-	if(w == "eofm") return -1;    
+	fin >> w;
+  // 1. If it is eofm, return right now.
+	if(w == "eofm"){
+		return -1;
+	}
 
   /*  **
-  2. Call the token functions (word and period) 
+  2. Call the token functions (word and period)
      one after another (if-then-else).
      Generate a lexical error message if both DFAs failed.
      Let the tokentype be ERROR in that case.
@@ -228,7 +259,7 @@ void jordans_DFA_tester(){
 	for (int i = 0; i < valids.size(); i++){
 //		cout<<"On test #"<< (i+1)<< " / " << valids.size() << "\nUsing word " << valids[i] << '\n';
 		assert(word(valids[i])); // These are valid, so these should return true
-		// lighting a candle w a blowtorch w this period test 
+		// lighting a candle w a blowtorch w this period test
 		assert(!period(valids[i])); //make sure period DFA isnt giving false positives anywhere
 	}
 
@@ -246,17 +277,17 @@ void jordans_DFA_tester(){
 
 
 
-// The temporary test driver to just call the scanner repeatedly  
+// The temporary test driver to just call the scanner repeatedly
 // This will go away after this assignment
-// DO NOT CHANGE THIS!!!!!! 
+// DO NOT CHANGE THIS!!!!!!
 // Done by:  Louis
 int main()
 {
-	// beyond adding this function call here, I leave krells tester untouched 
+	// beyond adding this function call here, I leave krells tester untouched
 	jordans_DFA_tester();
 /*
   tokentype thetype;
-  string theword; 
+  string theword;
   string filename;
 
   cout << "Enter the input file name: ";
@@ -268,11 +299,11 @@ int main()
    while (true)
     {
        scanner(thetype, theword);  // call the scanner which sets
-                                   // the arguments  
+                                   // the arguments
        if (theword == "eofm") break;  // stop now
 
        cout << "Type is:" << tokenName[thetype] << endl;
-       cout << "Word is:" << theword << endl;   
+       cout << "Word is:" << theword << endl;
     }
 
    cout << "End of file is encountered." << endl;
