@@ -1,2 +1,2 @@
-#This was a homework for MATH465, Introduction to Numerical Linear Algebra.
+# This was a homework for  Introduction to Numerical Linear Algebra.
 
