@@ -1,7 +1,9 @@
-# MiscellaneousMath-DataStructures
-Collection of reuploads of notable discrete math and data strucure programs I have created over the years. Some of these span from 2019 to present day.
+
+This is a collection of reuploads of notable discrete math and data strucure programs I have created over the years. Some of these span from 2019 to present day.
 
 They range from very short programs, to longer data structures.
 
-I am still in the process of re-uploading everything, as some work is on a school server, some are on my replit and local machines.
+
+# Why reuploaded ? 
+Some of this work was from the university unix server for the computer science department, some are from my replit and local machines. It made the most sense to put them here. 
 
