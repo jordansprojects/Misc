@@ -1,7 +1,8 @@
-# Miscellaneous Math And Data Structures
+# Miscellaneous Programs
+This is a collection of programs that did not necessitate their own repository.  Some of these ar reuploaded homework assignments from college, and some of them are little toy example programs I created for my own learning. These works span from 2019 to present day. 
 
-This is a collection of reuploads of notable discrete math and data strucure programs I have created over the years. These works span from 2019 to present day.
+I hope to continue uploading and organizing this repository so that it becomes a fun and handy means for me to reference my old work.
 
-# Why reuploaded ? 
-The work was scattered accross various platforms and devices. Some of this work was from the university unix server from where I attended school and some is from my replit and local machines. It made the most sense to me to collect all the work and upload it in one spot. 
+
+https://github.com/jordansprojects/Misc/assets/54329371/8c3764b9-2f56-416d-af33-fe5574f9f813
 
