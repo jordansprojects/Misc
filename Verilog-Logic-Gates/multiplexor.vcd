@@ -1,0 +1,42 @@
+$date
+	Thu Oct 27 12:32:04 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	10ps
+$end
+$scope module multiplexor_tb $end
+$scope module UUT $end
+$var wire 32 ! In1 [31:0] $end
+$var wire 32 " In2 [31:0] $end
+$var wire 32 # In3 [31:0] $end
+$var wire 32 $ In4 [31:0] $end
+$var wire 2 % Sel [1:0] $end
+$var reg 32 & Out [31:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b1 &
+b0 %
+b100 $
+b11 #
+b10 "
+b1 !
+$end
+#2000
+b10 &
+b1 %
+#4000
+b11 &
+b10 %
+#6000
+b100 &
+b11 %
+#8000

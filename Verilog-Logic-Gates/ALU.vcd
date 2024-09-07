@@ -1,0 +1,106 @@
+$date
+	Thu Oct 27 13:06:42 2022
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1s
+$end
+$scope module ALU_tb $end
+$scope module UUT $end
+$var wire 8 ! A [7:0] $end
+$var wire 4 " ALUctl [3:0] $end
+$var wire 8 # B [7:0] $end
+$var wire 1 $ Zero $end
+$var reg 8 % ALUOut [7:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+$comment Show the parameter values. $end
+$dumpall
+$end
+#0
+$dumpvars
+b0 %
+1$
+b0 #
+b0 "
+b0 !
+$end
+#20
+b1 !
+#40
+0$
+b1 %
+b1 #
+#60
+1$
+b0 %
+b1 "
+b0 #
+b0 !
+#80
+0$
+b1 %
+b1 !
+#100
+b1 #
+#120
+1$
+b0 %
+b0 #
+b0 !
+b10 "
+#140
+0$
+b1 %
+b1 !
+#160
+b10 %
+b1 #
+#180
+1$
+b0 %
+b0 #
+b0 !
+b110 "
+#200
+0$
+b1 %
+b1 !
+#220
+b11111111 %
+b1 #
+b0 !
+#240
+1$
+b0 %
+b1 !
+#260
+b0 #
+b0 !
+b111 "
+#280
+b1 !
+#300
+0$
+b1 %
+b1 #
+b0 !
+#320
+1$
+b0 %
+b1 !
+#340
+0$
+b11111111 %
+b0 #
+b0 !
+b1100 "
+#360
+b11111110 %
+b1 !
+#380
+b1 #
+#400
